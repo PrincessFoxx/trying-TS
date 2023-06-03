@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import {HomeController} from "./Routes/HomeController";
 
 dotenv.config();
 
@@ -12,8 +13,6 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('<h1>Hello from the TypeScript world!</h1>');
-});
+app.get('/', new HomeController().getIndex);
 
 app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
